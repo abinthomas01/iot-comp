@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .about-container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #006d6d;
+      margin-bottom: 30px;
+    }
+
+    .team {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .member {
+      text-align: center;
+    }
+
+    .circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 10px auto;
+      overflow: hidden;   /* Ensures the image stays inside circle */
+      border: 2px solid #ccc;
+    }
+    .circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+
+    .name {
+      font-weight: bold;
+    }
+
+    .role {
+      font-size: 14px;
+      color: #777;
+    }
+
+    .about-text {
+      text-align: left;
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+
+    .about-text h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .about-text strong {
+      color: #000;
+    }
+
+    .social {
+      margin-top: 30px;
+    }
+
+    .social p {
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: #f4f4f4;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      text-decoration: none;
+      color: #444;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      background: #ffff;
+    }
+    /* Sidebar styles */
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #333;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+      transition: 0.2s;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+
+    /* Hamburger button */
+    .hamburger {
+      font-size: 24px;
+      cursor: pointer;
+      background: #333;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+
+    }
+  </style>
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Hamburger button -->
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+  <!-- Sidebar menu -->
+  <div id="mySidebar" class="sidebar">
+    <a href="pages.html">Home</a>
+    <a href="About.html">About</a>
+    <a href="Project.html">Project</a>
+    <a href="Components.html">Components</a>
+    <a href="Contact.html">Contacts</a>
+  </div>
+
+  <!-- Page content -->
+  
+
+  <script>
+    function toggleSidebar() {
+      let sidebar = document.getElementById("mySidebar");
+      if (sidebar.style.width === "200px") {
+        sidebar.style.width = "0";
+      } else {
+        sidebar.style.width = "200px";
+      }
+    }
+  </script>
+
+  <div class="about-container">
+    <h1>About Us</h1>
+
+    <div class="team">
+      <div class="member">
+        <div class="circle">
+          <img src="WhatsApp Image 2025-03-09 at 15.40.45_df89fd81.jpg">
+        </div>
+        <div class="name">Your Name</div>
+        <div class="role">Developer</div>
+      </div>
+      <div class="member">
+        <div class="circle">
+          <img src="WhatsApp Image 2025-09-07 at 16.53.06_232a5e1a.jpg">
+        </div>
+        <div class="name">Team Member</div>
+        <div class="role"> Developer</div>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <h2>Hello there! We're the creators of this website.</h2>
+      <p>Our goal is to build a one-stop destination for IoT enthusiasts. We're creating a place where you can not only find the best components for your projects but also discover inspiring tutorials to help you bring your ideas to life.</p>
+      <p>We started this journey because we're passionate about technology and believe in the power of community. We wanted to create a platform there we can aplode our projects and idesas, in one website we will get all the thins about iot components, like price of the product, informations, connections, drowbacks, etc..</p>
+      <p><strong>This is just the beginning! We're committed to making this website more beautiful, user-friendly, and packed with features that will help you on your IoT journey. we didn't finish our project from here, Stay tuned for exciting updates!, i will gove you a word, i will make the website more beautifull and more userfriendly as soon as posible and the website will be one of the top website</strong></p>
+    </div>
+
+    <div class="social">
+      <p>Connect with us</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

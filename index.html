@@ -1,1 +1,174 @@
-hello mone
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IoT Components Explorer</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("img/industrial-iot-d-illustration-concept-connecting-machines-sensors-devices-industrial-iot-d-illustration-concept-connecting-271578049.webp")
+          no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+      }
+
+      /* Dark overlay for readability */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(10, 15, 50, 0.6);
+        z-index: -1;
+      }
+
+      .logo {
+        font-size: 20px;
+        font-weight: bold;
+        color: #3de0ff;
+      }
+
+      .menu {
+        display: flex;
+        gap: 20px;
+      }
+      /* Navbar Box */
+      .navbar-box {
+        background: rgba(28, 34, 77, 0.9);
+        margin: 20px auto;
+        max-width: 1200px;
+        padding: 15px 30px;
+        border-radius: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      }
+
+      .menu a {
+        text-decoration: none;
+        color: #cfd4ff;
+        font-weight: 500;
+      }
+      .menu a:hover {
+        color: #3de0ff;
+      }
+
+      .btn {
+        background: #3de0ff;
+        color: #0b0f2f;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .btn:hover {
+        background: #26aacc;
+      }
+
+      .hero {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 50px;
+      }
+
+      .hero-text {
+        flex: 1;
+        min-width: 300px;
+        padding: 20px;
+      }
+      .hero-text h1 {
+        font-size: 40px;
+        font-weight: bold;
+        color: #fff;
+      }
+      .hero-text p {
+        font-size: 18px;
+        margin-top: 15px;
+        color: #d1d5ff;
+      }
+
+      .stats {
+        display: flex;
+        gap: 50px;
+        margin-top: 25px;
+      }
+      .stats div {
+        text-align: center;
+      }
+      .stats h2 {
+        margin: 0;
+        font-size: 28px;
+        color: #3de0ff;
+      }
+      .stats p {
+        margin: 0;
+        color: #cfd4ff;
+      }
+
+      .hero-image {
+        flex: 1;
+        min-width: 300px;
+        padding: 20px;
+        text-align: center;
+      }
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar-box">
+      <div class="logo">IoT Components Explorer</div>
+      <div class="menu">
+        <a href="pages.html">Home</a>
+        <a href="About.html">About</a>
+        <a href="Components.html">Components</a>
+        <a href="Project.html">Projects</a>
+        <a href="Contact.html">Contact</a>
+      </div>
+      <a href="login.html">
+        <button class="btn">Login</button>
+      </a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="hero-text">
+        <h1>IoT learning made simple for students & makers</h1>
+        <p>
+          Discover sensors, actuators, microcontrollers, and real-world IoT
+          projects. Learn, simulate, and explore the world of IoT with ease.
+        </p>
+        <div class="stats">
+          <div>
+            <h2>6.2k</h2>
+            <p>Components explored</p>
+          </div>
+          <div>
+            <h2>567</h2>
+            <p>Projects shared</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img
+          src="assets/img/gyroscope-sensor.jpg"
+          alt="IoT Illustration"
+          height="300"
+          width="500"
+        />
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background-size: cover;
+color: #fff;
+}
+
+    /* Sidebar styles */
+.sidebar {
+height: 100%;
+width: 0;
+position: fixed;
+top: 0;
+left: 0;
+background-color: #333;
+overflow-x: hidden;
+transition: 0.3s;
+padding-top: 60px;
+}
+
+.sidebar a {
+padding: 10px 20px;
+text-decoration: none;
+font-size: 18px;
+color: white;
+display: block;
+transition: 0.2s;
+}
+
+.sidebar a:hover {
+background-color: #575757;
+}
+
+    /* Hamburger button */
+.hamburger {
+font-size: 24px;
+cursor: pointer;
+background: #333;
+color: white;
+padding: 10px 15px;
+border: none;
+position: fixed;
+top: 10px;
+left: 10px;
+}
+
+    /* Content */
+.content {
+padding: 20px;
+margin-left: 50px; /* space for hamburger */
+color: #333;
+}
+
+</style>
+</head>
+<body>
+
+  <!-- Hamburger button -->
+<button class="hamburger" onclick="toggleSidebar()">☰</button>
+
+  <!-- Sidebar menu -->
+<div id="mySidebar" class="sidebar">
+<a href="pages.html">Home</a>
+<a href="About.html">About</a>
+<a href="Project.html">Project</a>
+<a href="Components.html">Components</a>
+<a href="Contact.html">Contacts</a>
+</div>
+
+  <!-- Page content -->
+<div class="content">
+<h1>Projects</h1>
+<p>Here are some of my works...</p>
+</div>
+
+<script>
+function toggleSidebar() {
+    let sidebar = document.getElementById("mySidebar");
+if (sidebar.style.width === "200px") {
+    sidebar.style.width = "0";
+} else {
+    sidebar.style.width = "200px";
+    }
+}
+</script>
+</body>

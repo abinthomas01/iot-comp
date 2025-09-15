@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Components</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* Tabs at top */
+    .tabs {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .tabs button {
+      padding: 10px 20px;
+      border: none;
+      background: #e9ecef;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .tabs button.active {
+      background: #007bff;
+      color: white;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    /* Card */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 15px;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    .card p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px 15px;
+    }
+    .price {
+      font-weight: bold;
+      color: #28a745;
+      font-size: 16px;
+    }
+    .compare {
+      font-size: 14px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="active" onclick="filterItems('all', this)">All</button>
+    <button onclick="filterItems('microcontroller', this)">Microcontrollers</button>
+    <button onclick="filterItems('sensor', this)">Sensors</button>
+    <button onclick="filterItems('actuator', this)">Actuators</button>
+    <button onclick="filterItems('connectivity', this)">Connectivity</button>
+  </div>
+
+  <!-- Grid of Cards -->
+  <div class="grid">
+    <!-- Microcontrollers -->
+    <div class="card" data-category="microcontroller">
+      <img src="esp32-esp-wroom-32_d.jpg" alt="ESP32">
+      <div class="card-body">
+        <h3>ESP32-WROOM-32</h3>
+        <p>Powerful, generic Wi-Fi+BT+BLE MCU module for a wide variety of applications.</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$7.99</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="microcontroller">
+      <img src="46c36ea4e33cbb454f78b9c82bbb7819_1024x.webp" alt="Arduino Uno">
+      <div class="card-body">
+        <h3>Arduino Uno R3</h3>
+        <p>The classic Arduino board, perfect for beginners and educational purposes.</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$24.99</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="microcontroller">
+      <img src="bef8cda3-64ea-4098-bf18-8e731a6e9a0d_3b++Angle+2.webp" alt="Raspberry Pi">
+      <div class="card-body">
+        <h3>Raspberry Pi</h3>
+        <p>A small computer board used for learning, coding, and building IoT projects.</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$35.00</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="microcontroller">
+      <img src="OIP (1).webp" alt="BeagleBone Black">
+      <div class="card-body">
+        <h3>BeagleBone Black</h3>
+        <p>A low-cost board popular for industrial and embedded applications.</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$55.00</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="microcontroller">
+      <img src="teensy-hero.jpg" alt="Teensy">
+      <div class="card-body">
+        <h3>Teensy</h3>
+        <p>A tiny but powerful microcontroller board great for DIY electronics and hobby projects.</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$22.00</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="microcontroller">
+      <img src="STM32F103RCT6_STM32_Mini_V2.0-1.jpg" alt="STM32">
+      <div class="card-body">
+        <h3>STM32</h3>
+        <p>A family of microcontrollers known for high performance and used in professional systems.</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$18.00</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <!-- Sensors -->
+    <div class="card" data-category="sensor">
+      <img src="OIP.webp" alt="DHT22">
+      <div class="card-body">
+        <h3>DHT22/AM2302</h3>
+        <p>Digital temperature and humidity sensor with high accuracy.</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$4.50</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="1938_1443448480560946a0ea291_h8157-1-7db4.jpg" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>HC-SR501 PIR Sensor</h3>
+        <p>Passive Infrared (PIR) motion sensor for detecting movement.</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$20.25</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="piicodev-3-axis-accelerometer-lis3dh.jpg" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>MPU-6050 3-Axis Accelerometer and Gyro Sensor</h3>
+        <p>Measure acceleration forces. Detect movement, orientation, and vibration.</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$19.65</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="gyroscope-sensor.jpg" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>GY-50 L3G4200D 3 Axis Digital Gyroscope Sensor</h3>
+        <p>Measure angular velocity. Track rotation and maintain orientation</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$12.45</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="Screenshot 2025-09-06 132441.png" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>LM35 TO-92-3 Board Mount Temperature Sensors</h3>
+        <p>Detect temperature changes. Provide thermal readings</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$15.85</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="Screenshot 2025-09-06 133143.png" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>Pro-Range 4mm PNP Inductive Proximity Sensor RM12 DC6~36V (Unshielded)</h3>
+        <p>Detect the presence or absence of items without physical contact. Work by emitting electromagnetic fields or light</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$32.25</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="Screenshot 2025-09-06 181933.png" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>Infrared Obstacle Avoidance IR Sensor Module (Active Low)</h3>
+        <p>Detect infrared radiation. Measure heat or identify objects in low-light conditions</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$82.48</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="Screenshot 2025-09-06 182648.png" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>FirstRate FST100-2201 Solar Radiation Shield For Weather Monitor, 12-30VDC (RS485)</h3>
+        <p>Measure ionising radiation levels. Provide real-time monitoring of radiation exposure</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$35.84</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="Screenshot 2025-09-06 183327.png" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>RDC50C001A ALPSALPINE Position Sensors ROHS</h3>
+        <p>Track the position or movement of an object. Convert mechanical movement into electrical signals</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$73.74</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="Screenshot 2025-09-06 183547.png" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>Sencoch GZP6895A100KPP50H Pressure Sensors ROHS</h3>
+        <p>Measure pressure in gases or liquids. Convert pressure changes into electrical signals</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$92.55</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="Screenshot 2025-09-06 183926.png" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>ASAIR APM10 Laser Particle Detection Sensor</h3>
+        <p>Detect and measure particles in air or fluids. Monitor pollution, dust, and particulate levels</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$48.35</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="Screenshot 2025-09-06 184740.png" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>PANASONIC Photoelectric Sensors – NA2-N20-PN</h3>
+        <p>Use light to detect object presence, distance, or size. Can work in reflective or through-beam modes</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$8.49</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="Screenshot 2025-09-06 185335.png" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>5V Ultrasonic Sensor with RGB Colorful Lights</h3>
+        <p>Use high-frequency sound waves to detect items and estimate distance. Non-contact measurement technology</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$89.39</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="Screenshot 2025-09-06 185729.png" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>HS-S11-L, Gas Detection Sensors</h3>
+        <p>Identify and measure gas or chemical concentrations. Provide real-time monitoring for hazardous gases</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$27.45</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+
+    <div class="card" data-category="sensor">
+      <img src="Screenshot 2025-09-06 190200.png" alt="PIR Sensor">
+      <div class="card-body">
+        <h3>SmartElex Sound Sensor</h3>
+        <p> Detect sound waves and change them into electrical signals. Measure sound levels or trigger based on specific noise patterns</p>
+      </div>
+      <div class="card-footer">
+        <span class="price">$64.45</span>
+        <label><input type="checkbox"> Compare</label>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function filterItems(category, btn) {
+      let cards = document.querySelectorAll('.card');
+      let buttons = document.querySelectorAll('.tabs button');
+
+      // Update active button style
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Show/hide cards
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
