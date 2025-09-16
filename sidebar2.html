@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Cards</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 20px;
+    }
+
+    .card {
+      display: flex;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 300px;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+      flex: 1;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+    }
+
+    .components span {
+      display: inline-block;
+      background: #eee;
+      border-radius: 20px;
+      padding: 5px 12px;
+      margin: 5px 5px 0 0;
+      font-size: 14px;
+    }
+
+    details {
+      margin-top: 15px;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #333;
+      list-style: none;
+    }
+
+    summary::marker {
+      display: none; /* hide default arrow */
+    }
+
+    summary::before {
+      content: "› ";
+      font-size: 16px;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    details[open] summary::before {
+      content: "˅ "; /* change arrow when open */
+    }
+
+    .code-block {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 8px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Card 1 -->
+  <div class="card">
+    <img src="Screenshot 2025-09-13 215955.png" alt="Weather Station">
+    <div class="card-content">
+      <h2>Touch LCD Breakout Game</h2>
+      <p>it's a small gaming device. this can make even the kids. it is very simple and easy project</p>
+      <h4>Components Needed:</h4>
+      <div class="components">
+        <span>LCD display</span>
+        <span>buzzer</span>
+        <span>microsd-card</span>
+      </div>
+
+      <details>
+        <summary>View Example Code</summary>
+        <div class="code-block">
+<code>
+#include "SD.h"
+#include "adafruit_1947_Obj.h"
+#include "screen.h"
+#include "ourOSObj.h"
+
+ourOSObj  ourOS;
+
+void setup() {
+   
+   Serial.begin(57600);                                           //  Fire up serial for debugging.
+   if (!initScreen(ADAFRUIT_1947,ADA_1947_SHIELD_CS,PORTRAIT)) {  // Init screen.
+      Serial.println("NO SCREEN!");                               // Screen init failed. Tell user.
+      Serial.flush();                                             // Make sure the message gets out.
+      while(true);                                                // Lock the process here.
+   }
+   if (!SD.begin(ADA_1947_SHIELD_SDCS)) {                         // With icons, we now MUST have an SD card.
+      Serial.println("NO SD CARD!");                              // Tell user we have no SD card.
+      Serial.flush();                                             // Make sure the message gets out.
+      while(true);                                                // Lock the process here.
+   }
+   ourEventMgr.begin();                                           // Startup our event manager.
+   ourOS.begin();                                                 // Boot OS manager.
+   nextPanel = breakoutApp;                                       // <<-- URISH LOOK HERE!!
+}
+
+
+void loop() {     // During loop..
+   
+  idle();         // Idlers get their time.
+  ourOS.loop();   // ourOS gets time to pass on to the current panel.
+}
+</code>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <img src="Screenshot 2025-09-13 224918.png" alt="Motion Light">
+    <div class="card-content">
+      <h2>Eletronic Safe</h2>
+      <p>it is small eletronic safe. the user can only open with a specific password</p>
+      <h4>Components Needed:</h4>
+      <div class="components">
+        <span>servo </span>
+        <span>lcd1602 Reference</span>
+        <span>membrane-keypad</span>
+      </div>
+
+      <details>
+        <summary>View Example Code</summary>
+        <div class="code-block">
+<code>#include "LiquidCrystal.h"
+#include "Keypad.h"
+#include "Servo.h"
+#include "SafeState.h"
+#include "icons.h"
+
+/* Locking mechanism definitions */
+#define SERVO_PIN 6
+#define SERVO_LOCK_POS   20
+#define SERVO_UNLOCK_POS 90
+Servo lockServo;
+
+/* Display */
+LiquidCrystal lcd(12, 11, 10, 9, 8, 7);
+
+/* Keypad setup */
+const byte KEYPAD_ROWS = 4;
+const byte KEYPAD_COLS = 4;
+byte rowPins[KEYPAD_ROWS] = {5, 4, 3, 2};
+byte colPins[KEYPAD_COLS] = {A3, A2, A1, A0};
+char keys[KEYPAD_ROWS][KEYPAD_COLS] = {
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}
+};
+
+Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, KEYPAD_ROWS, KEYPAD_COLS);
+
+/* SafeState stores the secret code in EEPROM */
+SafeState safeState;
+
+void lock() {
+  lockServo.write(SERVO_LOCK_POS);
+  safeState.lock();
+}
+
+void unlock() {
+  lockServo.write(SERVO_UNLOCK_POS);
+}
+
+void showStartupMessage() {
+  lcd.setCursor(4, 0);
+  lcd.print("Welcome!");
+  delay(1000);
+
+  lcd.setCursor(0, 2);
+  String message = "ArduinoSafe v1.0";
+  for (byte i = 0; i < message.length(); i++) {
+    lcd.print(message[i]);
+    delay(100);
+  }
+  delay(500);
+}
+
+String inputSecretCode() {
+  lcd.setCursor(5, 1);
+  lcd.print("[____]");
+  lcd.setCursor(6, 1);
+  String result = "";
+  while (result.length() < 4) {
+    char key = keypad.getKey();
+    if (key >= '0' && key <= '9') {
+      lcd.print('*');
+      result += key;
+    }
+  }
+  return result;
+}
+
+void showWaitScreen(int delayMillis) {
+  lcd.setCursor(2, 1);
+  lcd.print("[..........]");
+  lcd.setCursor(3, 1);
+  for (byte i = 0; i < 10; i++) {
+    delay(delayMillis);
+    lcd.print("=");
+  }
+}
+
+bool setNewCode() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Enter new code:");
+  String newCode = inputSecretCode();
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Confirm new code");
+  String confirmCode = inputSecretCode();
+
+  if (newCode.equals(confirmCode)) {
+    safeState.setCode(newCode);
+    return true;
+  } else {
+    lcd.clear();
+    lcd.setCursor(1, 0);
+    lcd.print("Code mismatch");
+    lcd.setCursor(0, 1);
+    lcd.print("Safe not locked!");
+    delay(2000);
+    return false;
+  }
+}
+
+void showUnlockMessage() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.write(ICON_UNLOCKED_CHAR);
+  lcd.setCursor(4, 0);
+  lcd.print("Unlocked!");
+  lcd.setCursor(15, 0);
+  lcd.write(ICON_UNLOCKED_CHAR);
+  delay(1000);
+}
+
+void safeUnlockedLogic() {
+  lcd.clear();
+
+  lcd.setCursor(0, 0);
+  lcd.write(ICON_UNLOCKED_CHAR);
+  lcd.setCursor(2, 0);
+  lcd.print(" # to lock");
+  lcd.setCursor(15, 0);
+  lcd.write(ICON_UNLOCKED_CHAR);
+
+  bool newCodeNeeded = true;
+
+  if (safeState.hasCode()) {
+    lcd.setCursor(0, 1);
+    lcd.print("  A = new code");
+    newCodeNeeded = false;
+  }
+
+  auto key = keypad.getKey();
+  while (key != 'A' && key != '#') {
+    key = keypad.getKey();
+  }
+
+  bool readyToLock = true;
+  if (key == 'A' || newCodeNeeded) {
+    readyToLock = setNewCode();
+  }
+
+  if (readyToLock) {
+    lcd.clear();
+    lcd.setCursor(5, 0);
+    lcd.write(ICON_UNLOCKED_CHAR);
+    lcd.print(" ");
+    lcd.write(ICON_RIGHT_ARROW);
+    lcd.print(" ");
+    lcd.write(ICON_LOCKED_CHAR);
+
+    safeState.lock();
+    lock();
+    showWaitScreen(100);
+  }
+}
+
+void safeLockedLogic() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.write(ICON_LOCKED_CHAR);
+  lcd.print(" Safe Locked! ");
+  lcd.write(ICON_LOCKED_CHAR);
+
+  String userCode = inputSecretCode();
+  bool unlockedSuccessfully = safeState.unlock(userCode);
+  showWaitScreen(200);
+
+  if (unlockedSuccessfully) {
+    showUnlockMessage();
+    unlock();
+  } else {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Access Denied!");
+    showWaitScreen(1000);
+  }
+}
+
+void setup() {
+  lcd.begin(16, 2);
+  init_icons(lcd);
+
+  lockServo.attach(SERVO_PIN);
+
+  /* Make sure the physical lock is sync with the EEPROM state */
+  Serial.begin(115200);
+  if (safeState.locked()) {
+    lock();
+  } else {
+    unlock();
+  }
+
+  showStartupMessage();
+}
+
+void loop() {
+  if (safeState.locked()) {
+    safeLockedLogic();
+  } else {
+    safeUnlockedLogic();
+  }
+}
+
+</code>
+        </div>
+      </details>
+    </div>
+  </div>
+
+    <!-- Card 1 -->
+  <div class="card">
+    <img src="Screenshot 2025-09-13 230504.png" alt="Weather Station">
+    <div class="card-content">
+      <h2>Mini piano</h2>
+      <p>You can control the colorful buttons with your keyboard:
+   After starting the simulation, click anywhere in the diagram to focus it.
+   Then press any key between 1 and 8 to play the piano.</p>
+      <h4>Components Needed:</h4>
+      <div class="components">
+        <span>pushbutton</span>
+        <span>buzzer </span>
+      </div>
+
+      <details>
+        <summary>View Example Code</summary>
+        <div class="code-block">
+<code>
+#include "SD.h"
+#include "adafruit_1947_Obj.h"
+#include "screen.h"
+#include "ourOSObj.h"
+
+ourOSObj  ourOS;
+
+void setup() {
+   
+   Serial.begin(57600);                                           //  Fire up serial for debugging.
+   if (!initScreen(ADAFRUIT_1947,ADA_1947_SHIELD_CS,PORTRAIT)) {  // Init screen.
+      Serial.println("NO SCREEN!");                               // Screen init failed. Tell user.
+      Serial.flush();                                             // Make sure the message gets out.
+      while(true);                                                // Lock the process here.
+   }
+   if (!SD.begin(ADA_1947_SHIELD_SDCS)) {                         // With icons, we now MUST have an SD card.
+      Serial.println("NO SD CARD!");                              // Tell user we have no SD card.
+      Serial.flush();                                             // Make sure the message gets out.
+      while(true);                                                // Lock the process here.
+   }
+   ourEventMgr.begin();                                           // Startup our event manager.
+   ourOS.begin();                                                 // Boot OS manager.
+   nextPanel = breakoutApp;                                       // <<-- URISH LOOK HERE!!
+}
+
+
+void loop() {     // During loop..
+   
+  idle();         // Idlers get their time.
+  ourOS.loop();   // ourOS gets time to pass on to the current panel.
+}
+</code>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- Card 1 -->
+  <div class="card">
+    <img src="Screenshot 2025-09-13 234137.png" alt="Weather Station">
+    <div class="card-content">
+      <h2>Digital Alarm Clock</h2>
+      <p>this project is small alaram system, we can adjust the minute and houre and aleram, when the time reach the aleram should ring</p>
+      <h4>Components Needed:</h4>
+      <div class="components">
+        <span>pushbutton</span>
+        <span>buzzer </span>
+        <span>ds1307 </span>
+        <span>7segment </span>
+      </div>
+
+      <details>
+        <summary>View Example Code</summary>
+        <div class="code-block">
+<code>
+#include "SevSeg.h"
+#include "Button.h"
+#include "AlarmTone.h"
+#include "Clock.h"
+#include "config.h"
+
+const int COLON_PIN = 13;
+const int SPEAKER_PIN = A3;
+
+Button hourButton(A0);
+Button minuteButton(A1);
+Button alarmButton(A2);
+
+AlarmTone alarmTone;
+Clock clock;
+SevSeg sevseg;
+
+enum DisplayState {
+  DisplayClock,
+  DisplayAlarmStatus,
+  DisplayAlarmTime,
+  DisplayAlarmActive,
+  DisplaySnooze,
+};
+
+DisplayState displayState = DisplayClock;
+long lastStateChange = 0;
+
+void changeDisplayState(DisplayState newValue) {
+  displayState = newValue;
+  lastStateChange = millis();
+}
+
+long millisSinceStateChange() {
+  return millis() - lastStateChange;
+}
+
+void setColon(bool value) {
+  digitalWrite(COLON_PIN, value ? LOW : HIGH);
+}
+
+void displayTime() {
+  DateTime now = clock.now();
+  bool blinkState = now.second() % 2 == 0;
+  sevseg.setNumber(now.hour() * 100 + now.minute());
+  setColon(blinkState);
+}
+
+void clockState() {
+  displayTime();
+
+  if (alarmButton.read() == Button::RELEASED && clock.alarmActive()) {
+    // Read alarmButton has_changed() to clear its state
+    alarmButton.has_changed();
+    changeDisplayState(DisplayAlarmActive);
+    return;
+  }
+
+  if (hourButton.pressed()) {
+    clock.incrementHour();
+  }
+  if (minuteButton.pressed()) {
+    clock.incrementMinute();
+  }
+  if (alarmButton.pressed()) {
+    clock.toggleAlarm();
+    changeDisplayState(DisplayAlarmStatus);
+  }
+}
+
+void alarmStatusState() {
+  setColon(false);
+  sevseg.setChars(clock.alarmEnabled() ? " on" : " off");
+  if (millisSinceStateChange() > ALARM_STATUS_DISPLAY_TIME) {
+    changeDisplayState(clock.alarmEnabled() ? DisplayAlarmTime : DisplayClock);
+    return;
+  }
+}
+
+void alarmTimeState() {
+  DateTime alarm = clock.alarmTime();
+  sevseg.setNumber(alarm.hour() * 100 + alarm.minute(), -1);
+
+  if (millisSinceStateChange() > ALARM_HOUR_DISPLAY_TIME || alarmButton.pressed()) {
+    changeDisplayState(DisplayClock);
+    return;
+  }
+
+  if (hourButton.pressed()) {
+    clock.incrementAlarmHour();
+    lastStateChange = millis();
+  }
+  if (minuteButton.pressed()) {
+    clock.incrementAlarmMinute();
+    lastStateChange = millis();
+  }
+  if (alarmButton.pressed()) {
+    changeDisplayState(DisplayClock);
+  }
+}
+
+void alarmState() {
+  displayTime();
+
+  if (alarmButton.read() == Button::RELEASED) {
+    alarmTone.play();
+  }
+  if (alarmButton.pressed()) {
+    alarmTone.stop();
+  }
+  if (alarmButton.released()) {
+    alarmTone.stop();
+    bool longPress = alarmButton.repeat_count() > 0;
+    if (longPress) {
+      clock.stopAlarm();
+      changeDisplayState(DisplayClock);
+    } else {
+      clock.snooze();
+      changeDisplayState(DisplaySnooze);
+    }
+  }
+}
+
+void snoozeState() {
+  sevseg.setChars("****");
+  if (millisSinceStateChange() > SNOOZE_DISPLAY_TIME) {
+    changeDisplayState(DisplayClock);
+    return;
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  clock.begin();
+
+  hourButton.begin();
+  hourButton.set_repeat(500, 200);
+
+  minuteButton.begin();
+  minuteButton.set_repeat(500, 200);
+
+  alarmButton.begin();
+  alarmButton.set_repeat(1000, -1);
+
+  alarmTone.begin(SPEAKER_PIN);
+
+  pinMode(COLON_PIN, OUTPUT);
+
+  byte digits = 4;
+  byte digitPins[] = {2, 3, 4, 5};
+  byte segmentPins[] = {6, 7, 8, 9, 10, 11, 12};
+  bool resistorsOnSegments = false;
+  bool updateWithDelays = false;
+  bool leadingZeros = true;
+  bool disableDecPoint = true;
+  sevseg.begin(DISPLAY_TYPE, digits, digitPins, segmentPins, resistorsOnSegments,
+               updateWithDelays, leadingZeros, disableDecPoint);
+  sevseg.setBrightness(90);
+}
+
+void loop() {
+  sevseg.refreshDisplay();
+
+  switch (displayState) {
+    case DisplayClock:
+      clockState();
+      break;
+
+    case DisplayAlarmStatus:
+      alarmStatusState();
+      break;
+
+    case DisplayAlarmTime:
+      alarmTimeState();
+      break;
+
+    case DisplayAlarmActive:
+      alarmState();
+      break;
+
+    case DisplaySnooze:
+      snoozeState();
+      break;
+  }
+}
+</code>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  
+</body>
+</html>
