@@ -1,223 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 40px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IoT Components Explorer</title>
 
-    .about-container {
-      max-width: 900px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 40px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    h1 {
-      color: #006d6d;
-      margin-bottom: 30px;
-    }
-
-    .team {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-bottom: 30px;
-    }
-
-    .member {
-      text-align: center;
-    }
-
-    .circle {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin: 0 auto 10px auto;
-      overflow: hidden;   /* Ensures the image stays inside circle */
-      border: 2px solid #ccc;
-    }
-    .circle img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    }
-
-    .name {
-      font-weight: bold;
-    }
-
-    .role {
-      font-size: 14px;
-      color: #777;
-    }
-
-    .about-text {
-      text-align: left;
-      margin-top: 20px;
-      line-height: 1.6;
-    }
-
-    .about-text h2 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-
-    .about-text strong {
-      color: #000;
-    }
-
-    .social {
-      margin-top: 30px;
-    }
-
-    .social p {
-      margin-bottom: 10px;
-      color: #444;
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .social-icons a {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      background: #f4f4f4;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      text-decoration: none;
-      color: #444;
-      transition: 0.3s;
-    }
-
-    .social-icons a:hover {
-      background: #ffff;
-    }
-    /* Sidebar styles */
-    .sidebar {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: #333;
-      overflow-x: hidden;
-      transition: 0.3s;
-      padding-top: 60px;
-
-    }
-
-    .sidebar a {
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 18px;
-      color: white;
-      display: block;
-      transition: 0.2s;
-      margin-top: 15px;
-    }
-
-    .sidebar a:hover {
-      background-color: #575757;
-    }
-
-    /* Hamburger button */
-    .hamburger {
-      font-size: 24px;
-      cursor: pointer;
-      background: #333;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      position: fixed;
-      top: 10px;
-      left: 10px;
-
-    }
-  </style>
-  <!-- FontAwesome for icons -->
-  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
-</head>
-<body>
-
-  <!-- Hamburger button -->
-  <button class="hamburger" onclick="toggleSidebar()">☰</button>
-
-  <!-- Sidebar menu -->
-  <div id="mySidebar" class="sidebar">
-    <a href="pages.html">Home</a>
-    <a href="About.html">About</a>
-    <a href="Project.html">Project</a>
-    <a href="Components.html">Components</a>
-    <a href="Contact.html">Contacts</a>
-  </div>
-
-  <!-- Page content -->
-  
-
-  <script>
-    function toggleSidebar() {
-      let sidebar = document.getElementById("mySidebar");
-      if (sidebar.style.width === "200px") {
-        sidebar.style.width = "0";
-      } else {
-        sidebar.style.width = "200px";
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("img/industrial-iot-d-illustration-concept-connecting-machines-sensors-devices-industrial-iot-d-illustration-concept-connecting-271578049.webp")
+          no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
       }
-    }
-  </script>
 
-  <div class="about-container">
-    <h1>About Us</h1>
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(10, 15, 50, 0.6);
+        z-index: -1;
+      }
 
-    <div class="team">
-      <div class="member">
-        <div class="circle">
-          <img src="WhatsApp Image 2025-03-09 at 15.40.45_df89fd81.jpg">
+      .logo {
+        font-size: 20px;
+        font-weight: bold;
+        color: #3de0ff;
+      }
+
+      .menu {
+        display: flex;
+        gap: 20px;
+      }
+
+      .navbar-box {
+        background: rgba(28, 34, 77, 0.9);
+        margin: 20px auto;
+        max-width: 1200px;
+        padding: 15px 30px;
+        border-radius: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      }
+
+      .menu a {
+        text-decoration: none;
+        color: #cfd4ff;
+        font-weight: 500;
+      }
+
+      .menu a:hover {
+        color: #3de0ff;
+      }
+
+      .btn {
+        background: #3de0ff;
+        color: #0b0f2f;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .btn:hover {
+        background: #26aacc;
+      }
+
+      .hero {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 50px;
+      }
+
+      .hero-text {
+        flex: 1;
+        min-width: 300px;
+        padding: 20px;
+      }
+
+      .hero-text h1 {
+        font-size: 40px;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .hero-text p {
+        font-size: 18px;
+        margin-top: 15px;
+        color: #d1d5ff;
+      }
+
+      .stats {
+        display: flex;
+        gap: 50px;
+        margin-top: 25px;
+      }
+
+      .stats div {
+        text-align: center;
+      }
+
+      .stats h2 {
+        margin: 0;
+        font-size: 28px;
+        color: #3de0ff;
+      }
+
+      .stats p {
+        margin: 0;
+        color: #cfd4ff;
+      }
+
+      .hero-image {
+        flex: 1;
+        min-width: 300px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+      }
+
+      /* ✅ Mobile adjustments only */
+      @media (max-width: 768px) {
+        .navbar-box {
+          flex-direction: column;
+          text-align: center;
+          gap: 15px;
+        }
+
+        .menu {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .hero {
+          flex-direction: column;
+          padding: 30px 20px;
+        }
+
+        .hero-text h1 {
+          font-size: 28px;
+        }
+
+        .hero-text p {
+          font-size: 16px;
+        }
+
+        .stats {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="container">
+      <div class="navbar-box">
+        <div class="logo">IoT Components Explorer</div>
+
+        <div class="menu">
+          <a href="pages.html">Home</a>
+          <a href="About.html">About</a>
+          <a href="Components.html">Components</a>
+          <a href="Project.html">Projects</a>
+          <a href="Contact.html">Contact</a>
         </div>
-        <div class="name">Your Name</div>
-        <div class="role">Developer</div>
+
+        <a href="login.html">
+          <button class="btn">Login</button>
+        </a>
       </div>
-      <div class="member">
-        <div class="circle">
-          <img src="WhatsApp Image 2025-09-07 at 16.53.06_232a5e1a.jpg">
+    </div>
+
+    <!-- Hero Section -->
+    <div class="container">
+      <div class="hero row align-items-center">
+        <div class="hero-text col-lg-6 col-md-12">
+          <h1>IoT learning made simple for students & makers</h1>
+          <p>
+            Discover sensors, actuators, microcontrollers, and real-world IoT
+            projects. Learn, simulate, and explore the world of IoT with ease.
+          </p>
+
+          <div class="stats">
+            <div>
+              <h2>6.2k</h2>
+              <p>Components explored</p>
+            </div>
+            <div>
+              <h2>567</h2>
+              <p>Projects shared</p>
+            </div>
+          </div>
         </div>
-        <div class="name">Team Member</div>
-        <div class="role"> Developer</div>
+
+        <div class="hero-image col-lg-6 col-md-12 text-center">
+          <img
+            src="assets/img/gyroscope-sensor.jpg"
+            alt="IoT Illustration"
+            height="300"
+            width="500"
+          />
+        </div>
       </div>
     </div>
 
-    <div class="about-text">
-      <h2>Hello there! We're the creators of this website.</h2>
-      <p>Our goal is to build a one-stop destination for IoT enthusiasts. We're creating a place where you can not only find the best components for your projects but also discover inspiring tutorials to help you bring your ideas to life.</p>
-      <p>We started this journey because we're passionate about technology and believe in the power of community. We wanted to create a platform there we can aplode our projects and idesas, in one website we will get all the thins about iot components, like price of the product, informations, connections, drowbacks, etc..</p>
-      <p><strong>This is just the beginning! We're committed to making this website more beautiful, user-friendly, and packed with features that will help you on your IoT journey. we didn't finish our project from here, Stay tuned for exciting updates!, i will gove you a word, i will make the website more beautifull and more userfriendly as soon as posible and the website will be one of the top website</strong></p>
-    </div>
-
-    <div class="social">
-      <p>Connect with us</p>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
-      </div>
-    </div>
-  </div>
-
-</body>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
