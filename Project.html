@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Cards</title>
+
+  <!-- ✅ Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,28 +18,23 @@
       margin: 20px;
     }
 
+    /* ✅ Card styling (kept same, just responsive tweaks) */
     .card {
-      display: flex;
       background: #fff;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
       overflow: hidden;
     }
 
     .card img {
-      width: 300px;
-      height: auto;
+      width: 100%;
+      max-width: 300px;
       object-fit: cover;
     }
 
     .card-content {
       padding: 20px;
-      flex: 1;
-    }
-
-    .card h2 {
-      margin: 0 0 10px;
     }
 
     .components span {
@@ -58,7 +60,7 @@
     }
 
     summary::marker {
-      display: none; /* hide default arrow */
+      display: none;
     }
 
     summary::before {
@@ -69,7 +71,7 @@
     }
 
     details[open] summary::before {
-      content: "˅ "; /* change arrow when open */
+      content: "˅ ";
     }
 
     .code-block {
@@ -82,19 +84,19 @@
       white-space: pre-wrap;
       overflow-x: auto;
     }
-    
-     /* Sidebar styles */
+
+    /* ✅ Sidebar styles */
     .sidebar {
       height: 100%;
       width: 0;
       position: fixed;
       top: 0;
-      right: 0;
+      left: 0;
       background-color: #333;
       overflow-x: hidden;
       transition: 0.3s;
       padding-top: 60px;
-
+      z-index: 1000;
     }
 
     .sidebar a {
@@ -111,7 +113,7 @@
       background-color: #575757;
     }
 
-    /* Hamburger button */
+    /* ✅ Hamburger */
     .hamburger {
       font-size: 24px;
       cursor: pointer;
@@ -122,18 +124,15 @@
       position: fixed;
       top: 10px;
       right: 10px;
-
+      z-index: 1100;
     }
-
-
   </style>
 </head>
 <body>
-
-  <!-- FontAwesome for icons -->
-  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
-</head>
-<body>
+  <!-- ✅ Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  ></script>
 
   <!-- Hamburger button -->
   <button class="hamburger" onclick="toggleSidebar()">☰</button>
@@ -147,37 +146,29 @@
     <a href="Contact.html">Contacts</a>
   </div>
 
-  <!-- Page content -->
-  
+  <!-- ✅ Responsive grid container -->
+  <div class="container mt-5">
+    <div class="row gy-4">
+      <!-- Card 1 -->
+      <div class="col-12 col-md-6 mx-auto">
+        <div class="card d-flex flex-column flex-md-row">
+          <img src="Screenshot 2025-09-13 215955.png" alt="Touch LCD Game" />
+          <div class="card-content">
+            <h2>Touch LCD Breakout Game</h2>
+            <p>
+              It's a small gaming device. This can be made even by kids — very
+              simple and easy project.
+            </p>
+            <h4>Components Needed:</h4>
+            <div class="components">
+              <span>LCD display</span>
+              <span>buzzer</span>
+              <span>microsd-card</span>
+            </div>
 
-  <script>
-    function toggleSidebar() {
-      let sidebar = document.getElementById("mySidebar");
-      if (sidebar.style.width === "200px") {
-        sidebar.style.width = "0";
-      } else {
-        sidebar.style.width = "200px";
-      }
-    }
-  </script>
-
-
-  <!-- Card 1 -->
-  <div class="card">
-    <img src="assets/img/Screenshot 2025-09-13 215955.png" alt="Weather Station">
-    <div class="card-content">
-      <h2>Touch LCD Breakout Game</h2>
-      <p>it's a small gaming device. this can make even the kids. it is very simple and easy project</p>
-      <h4>Components Needed:</h4>
-      <div class="components">
-        <span>LCD display</span>
-        <span>buzzer</span>
-        <span>microsd-card</span>
-      </div>
-
-      <details>
-        <summary>View Example Code</summary>
-        <div class="code-block">
+            <details>
+              <summary>View Example Code</summary>
+              <div class="code-block">
 <code>
 #include "SD.h"
 #include "adafruit_1947_Obj.h"
@@ -210,29 +201,36 @@ void loop() {     // During loop..
   idle();         // Idlers get their time.
   ourOS.loop();   // ourOS gets time to pass on to the current panel.
 }
-</code>
-        </div>
-      </details>
-    </div>
-  </div>
 
-  <!-- Card 2 -->
-  <div class="card">
-    <img src="assets/img/Screenshot 2025-09-13 224918.png" alt="Motion Light">
-    <div class="card-content">
-      <h2>Eletronic Safe</h2>
-      <p>it is small eletronic safe. the user can only open with a specific password</p>
-      <h4>Components Needed:</h4>
-      <div class="components">
-        <span>servo </span>
-        <span>lcd1602 Reference</span>
-        <span>membrane-keypad</span>
+</code>
+              </div>
+            </details>
+          </div>
+        </div>
       </div>
 
-      <details>
-        <summary>View Example Code</summary>
-        <div class="code-block">
-<code>#include "LiquidCrystal.h"
+      <!-- Card 2 -->
+      <div class="col-12 col-md-6 mx-auto">
+        <div class="card d-flex flex-column flex-md-row">
+          <img src="Screenshot 2025-09-13 224918.png" alt="Electronic Safe" />
+          <div class="card-content">
+            <h2>Electronic Safe</h2>
+            <p>
+              It is a small electronic safe. The user can only open it with a
+              specific password.
+            </p>
+            <h4>Components Needed:</h4>
+            <div class="components">
+              <span>servo</span>
+              <span>lcd1602 Reference</span>
+              <span>membrane-keypad</span>
+            </div>
+
+            <details>
+              <summary>View Example Code</summary>
+              <div class="code-block">
+<code>
+#include "LiquidCrystal.h"
 #include "Keypad.h"
 #include "Servo.h"
 #include "SafeState.h"
@@ -439,28 +437,32 @@ void loop() {
 }
 
 </code>
+              </div>
+            </details>
+          </div>
         </div>
-      </details>
-    </div>
-  </div>
-
-    <!-- Card 1 -->
-  <div class="card">
-    <img src="assets/img/Screenshot 2025-09-13 230504.png" alt="Weather Station">
-    <div class="card-content">
-      <h2>Mini piano</h2>
-      <p>You can control the colorful buttons with your keyboard:
-   After starting the simulation, click anywhere in the diagram to focus it.
-   Then press any key between 1 and 8 to play the piano.</p>
-      <h4>Components Needed:</h4>
-      <div class="components">
-        <span>pushbutton</span>
-        <span>buzzer </span>
       </div>
 
-      <details>
-        <summary>View Example Code</summary>
-        <div class="code-block">
+      <!-- Card 3 -->
+      <div class="col-12 col-md-6 mx-auto">
+        <div class="card d-flex flex-column flex-md-row">
+          <img src="Screenshot 2025-09-13 230504.png" alt="Mini Piano" />
+          <div class="card-content">
+            <h2>Mini Piano</h2>
+            <p>
+              You can control the colorful buttons with your keyboard. After
+              starting the simulation, click anywhere in the diagram to focus
+              it. Then press any key between 1 and 8 to play the piano.
+            </p>
+            <h4>Components Needed:</h4>
+            <div class="components">
+              <span>pushbutton</span>
+              <span>buzzer</span>
+            </div>
+
+            <details>
+              <summary>View Example Code</summary>
+              <div class="code-block">
 <code>
 #include "SD.h"
 #include "adafruit_1947_Obj.h"
@@ -494,28 +496,36 @@ void loop() {     // During loop..
   ourOS.loop();   // ourOS gets time to pass on to the current panel.
 }
 </code>
+              </div>
+            </details>
+          </div>
         </div>
-      </details>
-    </div>
-  </div>
-
-  <!-- Card 1 -->
-  <div class="card">
-    <img src="assets/img/Screenshot 2025-09-13 234137.png" alt="Weather Station">
-    <div class="card-content">
-      <h2>Digital Alarm Clock</h2>
-      <p>this project is small alaram system, we can adjust the minute and houre and aleram, when the time reach the aleram should ring</p>
-      <h4>Components Needed:</h4>
-      <div class="components">
-        <span>pushbutton</span>
-        <span>buzzer </span>
-        <span>ds1307 </span>
-        <span>7segment </span>
       </div>
 
-      <details>
-        <summary>View Example Code</summary>
-        <div class="code-block">
+      <!-- Card 4 -->
+      <div class="col-12 col-md-6 mx-auto">
+        <div class="card d-flex flex-column flex-md-row">
+          <img
+            src="Screenshot 2025-09-13 234137.png"
+            alt="Digital Alarm Clock"
+          />
+          <div class="card-content">
+            <h2>Digital Alarm Clock</h2>
+            <p>
+              This project is a small alarm system. You can adjust the minute
+              and hour; when the time reaches the set alarm, it rings.
+            </p>
+            <h4>Components Needed:</h4>
+            <div class="components">
+              <span>pushbutton</span>
+              <span>buzzer</span>
+              <span>ds1307</span>
+              <span>7segment</span>
+            </div>
+
+            <details>
+              <summary>View Example Code</summary>
+              <div class="code-block">
 <code>
 #include "SevSeg.h"
 #include "Button.h"
@@ -704,13 +714,19 @@ void loop() {
   }
 }
 </code>
+              </div>
+            </details>
+          </div>
         </div>
-      </details>
+      </div>
     </div>
   </div>
 
-  
+  <script>
+    function toggleSidebar() {
+      let sidebar = document.getElementById("mySidebar");
+      sidebar.style.width = sidebar.style.width === "200px" ? "0" : "200px";
+    }
+  </script>
 </body>
 </html>
-
-
