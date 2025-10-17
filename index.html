@@ -194,11 +194,13 @@
         </div>
 
         <div class="hero-image col-lg-6 col-md-12 text-center">
+          <!-- Updated: include img/ folder and add a placeholder fallback -->
           <img
-            src="internet-of-things-iot-smart-connection-vector-40222826.jpg"
+            src="img/internet-of-things-iot-smart-connection-vector-40222826.jpg"
             alt="IoT Illustration"
-            height="300"
             width="500"
+            height="300"
+            onerror="this.onerror=null;this.src='https://via.placeholder.com/500x300?text=Image+not+found';"
           />
         </div>
       </div>
@@ -208,6 +210,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
-
-
-
