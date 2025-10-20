@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link href="https://www.google.com/search?q=https://cdn.jsdelivr.net/npm/bootstrap%405.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IoT Components Explorer</title>
     <style>
+      :root {
+        --accent: #3de0ff;
+      }
       body {
         margin: 0;
         font-family: Arial, sans-serif;
@@ -30,47 +34,62 @@
       .logo {
         font-size: 20px;
         font-weight: bold;
-        color: #3de0ff;
+        color: var(--accent);
       }
 
-      .menu {
-        display: flex;
-        gap: 20px;
-      }
-      /* Navbar Box */
-      .navbar-box {
-        background: rgba(28, 34, 77, 0.9);
-        margin: 20px auto;
-        max-width: 1200px;
-        padding: 15px 30px;
-        border-radius: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-      }
-
-      .menu a {
-        text-decoration: none;
-        color: #cfd4ff;
-        font-weight: 500;
-      }
-      .menu a:hover {
-        color: #3de0ff;
-      }
-
-      .btn {
-        background: #3de0ff;
-        color: #0b0f2f;
-        padding: 8px 15px;
-        border: none;
+      .component{
+        padding: 8px 12px;
+        background-color: #020736;
+        border-inline-color: black;
         border-radius: 20px;
+        margin-left: 1cm;
+        margin-right: 1.5cm;
+        margin-top: 0.5cm;
+      }
+
+      .component h2{
+        color: #3de0ff;
+      }
+
+      /* Sidebar / hamburger (matches other pages) */
+      .hamburger {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 1050;
+        background: var(--accent);
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
         cursor: pointer;
-        font-weight: bold;
+        font-size: 18px;
+        color: #07102a;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.5);
       }
-      .btn:hover {
-        background: #26aacc;
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -260px;
+        width: 240px;
+        height: 100%;
+        background: rgba(28, 34, 77, 0.98);
+        padding-top: 60px;
+        box-shadow: 2px 0 12px rgba(0,0,0,0.45);
+        transition: left 0.22s ease;
+        z-index: 1040;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
       }
+      .sidebar.open { left: 0; }
+      .sidebar a {
+        color: #cfd4ff;
+        padding: 12px 18px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .sidebar a:hover { background: rgba(61,224,255,0.06); color: var(--accent); }
 
       .hero {
         display: flex;
@@ -84,16 +103,44 @@
         flex: 1;
         min-width: 300px;
         padding: 20px;
+        max-width: 720px;
       }
       .hero-text h1 {
         font-size: 40px;
         font-weight: bold;
-        color: #fff;
+        color: #ffffff;
+        margin-bottom: 12px;
       }
       .hero-text p {
         font-size: 18px;
-        margin-top: 15px;
+        margin-top: 12px;
         color: #d1d5ff;
+      }
+
+      /* Buttons between title and description */
+      .hero-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 18px; /* space between buttons */
+        margin: 18px 0;
+      }
+      .hero-button {
+        margin-top: 1cm;
+        margin-bottom: 1cm;
+        display: inline-block;
+        color: black;           /* text color as requested */
+        background: #3de0ff;            /* white background for contrast */
+        padding: 10px 22px;
+        border-radius: 20px;            /* rounded corners */
+        text-decoration: none;
+        font-weight: 700;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.6); /* black shadow */
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
+        
+      }
+      .hero-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.7);
       }
 
       .stats {
@@ -107,7 +154,7 @@
       .stats h2 {
         margin: 0;
         font-size: 28px;
-        color: #3de0ff;
+        color: var(--accent);
       }
       .stats p {
         margin: 0;
@@ -125,32 +172,47 @@
         height: auto;
         border-radius: 12px;
       }
+
+      @media (max-width: 760px) {
+        .hero { padding: 36px 20px; }
+        .hero-text h1 { font-size: 28px; }
+      }
     </style>
   </head>
   <body>
-    <!-- Navbar -->
-    <div class="navbar-box">
-      <div class="logo">IoT Components Explorer</div>
-      <div class="menu">
-        <a href="index.html">Home</a>
-        <a href="About.html">About</a>
-        <a href="Components.html">Components</a>
-        <a href="Project.html">Projects</a>
-        <a href="Contact.html">Contact</a>
-      </div>
-      <a href="login.html">
-        <button class="btn">Login</button>
-      </a>
+    <div class="component">
+    <h2>IOT Components</h2>
     </div>
 
+    <!-- Hamburger + Sidebar (consistent with other pages) -->
+    <button class="hamburger" aria-label="Open menu" onclick="toggleSidebar()">☰</button>
+    <nav id="mySidebar" class="sidebar" aria-label="Main navigation">
+      <a href="index.html" class="logo" style="padding-left:18px;">IoT Components</a>
+      <hr style="border-color: rgba(255,255,255,0.05); width:90%;">
+      <a href="index.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="Components.html">Components</a>
+      <a href="Project.html">Projects</a>
+      <a href="Contact.html">Contact</a>
+      <a href="login.html">Login</a>
+    </nav>
+
     <!-- Hero Section -->
-    <div class="hero">
+    <div class="hero container">
       <div class="hero-text">
         <h1>IoT learning made simple for students & makers</h1>
+
+        <!-- Buttons inserted between title and description -->
+        <div class="hero-buttons">
+          <a href="Components.html" class="hero-button" role="button">Components</a>
+          <a href="Project.html" class="hero-button" role="button">Projects</a>
+        </div>
+
         <p>
           Discover sensors, actuators, microcontrollers, and real-world IoT
           projects. Learn, simulate, and explore the world of IoT with ease.
         </p>
+
         <div class="stats">
           <div>
             <h2>6.2k</h2>
@@ -162,6 +224,7 @@
           </div>
         </div>
       </div>
+
       <div class="hero-image">
         <img
           src="assets/img/internet-of-things-iot-smart-connection-vector-40222826.jpg"
@@ -171,11 +234,24 @@
         />
       </div>
     </div>
-        <script src="https://www.google.com/search?q=https://cdn.jsdelivr.net/npm/bootstrap%405.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+    <!-- Bootstrap JS (bundle includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <script>
+      function toggleSidebar() {
+        document.getElementById('mySidebar').classList.toggle('open');
+      }
+      // close sidebar when clicking outside
+      document.addEventListener('click', function(e){
+        const sb = document.getElementById('mySidebar');
+        const hb = document.querySelector('.hamburger');
+        if (!sb.contains(e.target) && !hb.contains(e.target)) sb.classList.remove('open');
+      });
+      // allow Esc to close sidebar
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape') document.getElementById('mySidebar').classList.remove('open');
+      });
+    </script>
   </body>
 </html>
-
-
-
-
